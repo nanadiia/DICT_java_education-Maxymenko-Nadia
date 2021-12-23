@@ -57,6 +57,7 @@ class Machine{
             this.cups -= 1;
             this.beans -= beans;
             this.money += money;
+
         }
 
     }
@@ -67,27 +68,31 @@ public class CoffeeMachine {
     public static void main(String args[]) {
         Machine machine = new Machine();
         Scanner in = new Scanner(System.in);
-        machine.availability();
-        System.out.println("Write action (buy, fill, take):");
-        String action = in.nextLine();
-        if (Objects.equals(action, "buy")) {
-            System.out.println("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino:");
-            int coffee = in.nextInt();
-            if (coffee == 1) {
-                machine.check(250, 0, 16, 4);
-            } else if (coffee == 2) {
-                machine.check(350, 75, 20, 7);
-            } else if (coffee == 3) {
-                machine.check(200, 100, 12, 6);
-            }
-            machine.availability();
-        } else if (Objects.equals(action, "fill")) {
-            machine.consist(in);
-            machine.availability();
+        while (true) {
+            System.out.println("Write action (buy, fill, take,remaining,exit):");
+            String action = in.nextLine();
+            if (Objects.equals(action, "buy")) {
+                System.out.println("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino,back-to main menu:");
+                int coffee = in.nextInt();
+                if (coffee == 1) {
+                    machine.check(250, 0, 16, 4);
+                } else if (coffee == 2) {
+                    machine.check(350, 75, 20, 7);
+                } else if (coffee == 3) {
+                    machine.check(200, 100, 12, 6);
+                }
 
-        } else if (Objects.equals(action, "take")) {
-            machine.take();
-            machine.availability();
+            } else if (Objects.equals(action, "fill")) {
+                machine.consist(in);
+            } else if (Objects.equals(action, "take")) {
+                machine.take();
+            } else if (Objects.equals(action, "remaining")) {
+                machine.availability();
+            } else if (Objects.equals(action, "exit")) {
+                break;
+
+            }
+
         }
     }
 }
