@@ -9,8 +9,14 @@ public class Hangman {
         Random randomIntGen = new Random();
         int randomInt = randomIntGen.nextInt(list.length);
         String word = list[randomInt];
+
+        StringBuilder secret_w = new StringBuilder(word.substring(0, 2));
+        for (int i = 0; i < word.length() - 2; i++){
+            secret_w.append('-');
+        }
+
         System.out.println("HANGMAN");
-        System.out.println("Guess the word:");
+        System.out.printf("Guess the word %s:", secret_w);
         Scanner input = new Scanner(System.in);
         String answer = input.nextLine();
         if (answer.equals(word)) {
